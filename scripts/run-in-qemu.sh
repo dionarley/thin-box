@@ -1,11 +1,13 @@
+#!/bin/bash
+set -e
+
 qemu-system-x86_64 \
--machine q35 \
--cpu host \
--m 2048 \
--enable-kvm \
--bios /usr/share/OVMF/OVMF_CODE.fd \
--drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE.fd \
--drive if=pflash,format=raw,file=/usr/share/OVMF/OVMF_VARS.fd \
--cdrom thin-client.iso \
--boot d \
--display gtk
+  -machine q35 \
+  -cpu host \
+  -m 2048 \
+  -enable-kvm \
+  -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE.fd \
+  -drive if=pflash,format=raw,file=/usr/share/OVMF/OVMF_VARS.fd \
+  -cdrom thin-client.iso \
+  -boot d \
+  -display gtk
