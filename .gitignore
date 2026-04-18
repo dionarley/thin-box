@@ -6,6 +6,13 @@
 *.iso
 *.qcow2
 *.raw
+limine/rootfs.squashfs
+limine/vmlinuz-linux
+limine/limine.zip
+thin-client.iso
+
+# Rootfs (generated)
+src/rootfs/
 
 # MkDocs
 site/
