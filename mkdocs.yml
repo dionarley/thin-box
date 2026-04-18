@@ -1,0 +1,18 @@
+site_name: Thin Box Wiki
+site_description: Documentation for Thin Box thin client
+site_url: https://dionarley.github.io/thin-box/
+repo_url: https://github.com/dionarley/thin-box
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Features: features.md
+  - Architecture: architecture.md
+  - Build: build.md
+  - Security: security.md
+
+markdown_extensions:
+  - admonition
+  - codehilite

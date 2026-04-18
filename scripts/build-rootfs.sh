@@ -4,7 +4,11 @@ set -e
 ROOTFS="src/rootfs"
 OUT="limine/rootfs.squashfs"
 
+[ "$(id -u)" -ne 0 ] && echo "[error] Run as root: sudo $0" && exit 1
+
+FREE=$(df -h . | tail -1 | awk "{print \$4}")
 echo "[thin-box] Building rootfs..."
+echo "[info] Location: $(pwd) | Free: ${FREE}"
 
 mkdir -p "$ROOTFS"/{proc,sys,dev,var}
 
