@@ -48,10 +48,18 @@ Hardware → Limine → Kernel → initramfs → Openbox → Docker/LXC → Apps
 ## Build
 
 ```bash
-./scripts/build-rootfs.sh    # rootfs + squashfs
-./src/initramfs/build.sh  # initramfs
-./scripts/run-in-qemu.sh    # test in QEMU
+./scripts/check-location.sh   # Check disk space
+sudo ./scripts/build-rootfs.sh  # rootfs + squashfs (needs root)
+./src/initramfs/build.sh      # initramfs
+./scripts/run-in-qemu.sh     # test in QEMU
 ```
+
+### Estimated Size
+
+- rootfs + squashfs: ~500MB-2GB
+- initramfs: ~20MB
+- limine binaries: ~35MB
+- **Total**: ~600MB-2.5GB
 
 ---
 
@@ -59,11 +67,26 @@ Hardware → Limine → Kernel → initramfs → Openbox → Docker/LXC → Apps
 
 | Script | Purpose |
 |--------|---------|
+| `scripts/check-location.sh` | Check disk space |
 | `scripts/build-rootfs.sh` | Build rootfs and squashfs |
 | `scripts/run-in-qemu.sh` | Run in QEMU |
 | `scripts/run-in-docker.sh` | Run Docker container |
 | `scripts/run-in-lxc.sh` | Launch LXC container |
 | `scripts/Kiosk-Chromium.sh` | Chromium kiosk mode |
+
+---
+
+## Disk Space
+
+Current locations:
+
+| Disk | Free | Notes |
+|------|------|-------|
+| sdb2 (project) | 66G | Recommended |
+| / | 817M | Not enough |
+| /home | 4.5G | Not enough |
+
+Run `./scripts/check-location.sh` to check current space.
 
 ---
 

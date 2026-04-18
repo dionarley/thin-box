@@ -9,21 +9,17 @@ Guidelines for agentic coding agents working on the Thin Box project (Linux thin
 ### Full Build
 
 ```bash
-./scripts/build-rootfs.sh    # rootfs + squashfs
-./src/initramfs/build.sh      # initramfs
-./scripts/build-iso.sh        # ISO (if exists)
+./scripts/check-location.sh    # Check disk space first
+sudo ./scripts/build-rootfs.sh  # rootfs + squashfs (needs root)
+./src/initramfs/build.sh        # initramfs
+./scripts/build-iso.sh          # ISO (if exists)
 ```
 
 ### Testing
 
 ```bash
-./scripts/run-in-qemu.sh      # full system
-./src/initramfs/test-qemu.sh # initramfs only
-
-# Manual QEMU test
-qemu-system-x86_64 -machine q35 -cpu host -m 2048 -enable-kvm \
-  -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE.fd \
-  -cdrom thin-client.iso -boot d -display gtk
+./scripts/run-in-qemu.sh        # full system (needs ISO built)
+./src/initramfs/test-qemu.sh    # initramfs only
 ```
 
 ### Container Testing
@@ -108,6 +104,12 @@ fi
 pacman -S base-devel limine squashfs-tools cpio xorriso
 pacman -S qemu-full docker lxc  # optional
 ```
+
+### Build Requirements
+
+- Root (`sudo`) for pacstrap
+- ~2GB disk space minimum
+- Run `./scripts/check-location.sh` first
 
 ---
 
