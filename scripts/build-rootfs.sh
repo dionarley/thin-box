@@ -16,6 +16,7 @@ mkdir -p "$ROOTFS"/{proc,sys,dev,var}
 if [ ! -f "$ROOTFS/.bootstrapped" ]; then
   pacstrap -c "$ROOTFS" \
     base \
+    linux \
     linux-firmware \
     busybox \
     openbox \
@@ -27,6 +28,11 @@ if [ ! -f "$ROOTFS/.bootstrapped" ]; then
     sudo
 
   touch "$ROOTFS/.bootstrapped"
+fi
+
+# Copy kernel to limine/
+if [ -f "$ROOTFS/boot/vmlinuz-linux" ]; then
+  cp "$ROOTFS/boot/vmlinuz-linux" "limine/vmlinuz-linux"
 fi
 
 # Basic config
@@ -55,5 +61,16 @@ rm -rf "$ROOTFS/usr/share/doc/"*
 echo "[thin-box] Creating squashfs..."
 
 mksquashfs "$ROOTFS" "$OUT" -comp zstd -Xcompression-level 15
+
+# Copy kernel to limine/ for ISO boot
+if [ -f "$ROOTFS/boot/vmlinuz-linux" ]; then
+  cp "$ROOTFS/boot/vmlinuz-linux" "limine/vmlinuz-linux"
+  echo "[thin-box] Kernel copied to limine/vmlinuz-linux"
+fi
+
+# Copy initramfs to limine/ if not exists
+if [ ! -f "limine/initramfs-linux.img" ]; then
+  cp "$ROOTFS/boot/initramfs-linux.img" "limine/initramfs-linux.img" 2>/dev/null || true
+fi
 
 echo "[thin-box] rootfs ready: $OUT"
