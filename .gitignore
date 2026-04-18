@@ -7,6 +7,12 @@
 *.qcow2
 *.raw
 
+# MkDocs
+site/
+
+# Docs (generated)
+Docs/
+
 # Logs
 *.log
 
