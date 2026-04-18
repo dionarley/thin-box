@@ -6,20 +6,25 @@ Guidelines for agentic coding agents working on the Thin Box project (Linux thin
 
 ## Build Commands
 
-### Full Build
+### Build ISO
 
 ```bash
-./scripts/check-location.sh    # Check disk space first
+./scripts/check-location.sh    # Check disk space
 sudo ./scripts/build-rootfs.sh  # rootfs + squashfs (needs root)
 bash ./src/initramfs/build.sh   # initramfs
-./scripts/build-iso.sh          # ISO bootavel
+./scripts/build-iso.sh    # ISO bootavel
 ```
 
-### Testing
+### Test in Docker (QEMU runtime)
 
 ```bash
-./scripts/run-in-qemu.sh        # full system (needs ISO built)
-./src/initramfs/test-qemu.sh    # initramfs only
+./scripts/run-in-qemu.sh   # QEMU in Docker with KVM
+```
+
+### Local Test (without Docker)
+
+```bash
+./scripts/run-in-qemu Native mode (needs QEMU installed)
 ```
 
 ### Container Testing
