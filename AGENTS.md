@@ -11,8 +11,8 @@ Guidelines for agentic coding agents working on the Thin Box project (Linux thin
 ```bash
 ./scripts/check-location.sh    # Check disk space first
 sudo ./scripts/build-rootfs.sh  # rootfs + squashfs (needs root)
-./src/initramfs/build.sh        # initramfs
-./scripts/build-iso.sh          # ISO (if exists)
+bash ./src/initramfs/build.sh   # initramfs
+./scripts/build-iso.sh          # ISO bootavel
 ```
 
 ### Testing

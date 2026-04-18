@@ -17,9 +17,12 @@
 sudo ./scripts/build-rootfs.sh
 
 # 3. Build initramfs
-./src/initramfs/build.sh
+bash ./src/initramfs/build.sh
 
-# 4. Test in QEMU
+# 4. Build ISO
+./scripts/build-iso.sh
+
+# 5. Test in QEMU
 ./scripts/run-in-qemu.sh
 ```
 
@@ -29,6 +32,7 @@ sudo ./scripts/build-rootfs.sh
 |--------|---------|
 | `scripts/check-location.sh` | Check disk space |
 | `scripts/build-rootfs.sh` | Build rootfs + squashfs |
+| `scripts/build-iso.sh` | Create bootable ISO |
 | `scripts/run-in-qemu.sh` | Run in QEMU |
 | `src/initramfs/build.sh` | Build initramfs |
 
